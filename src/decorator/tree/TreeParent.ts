@@ -5,7 +5,7 @@ import {RelationMetadataArgs} from "../../metadata-args/RelationMetadataArgs";
  * Marks a entity property as a parent of the tree.
  * "Tree parent" indicates who owns (is a parent) of this entity in tree structure.
  */
-export function TreeParent(): Function {
+export function TreeParent(options: any = {}): Function {
     return function (object: Object, propertyName: string) {
 
         // now try to determine it its lazy relation
@@ -19,7 +19,7 @@ export function TreeParent(): Function {
             isLazy: isLazy,
             relationType: "many-to-one",
             type: () => object.constructor,
-            options: {}
+            options: options
         } as RelationMetadataArgs);
     };
 }
